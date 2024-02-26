@@ -45,7 +45,7 @@ namespace Infra.Data.Repository
             return await _dataset.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dataset.FindAsync(id);
         }

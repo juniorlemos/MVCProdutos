@@ -1,4 +1,7 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Application.Interfaces;
+using Application.Mappings;
+using Application.Services;
+using Domain.Interfaces.Repository;
 using Infra.Data.Context;
 using Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +29,13 @@ namespace Infra.IoC
             services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));
             services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
 
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+
+            var myhandlers = AppDomain.CurrentDomain.Load("Application");
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(myhandlers));
+           
             return services;
         }
     }
