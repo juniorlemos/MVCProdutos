@@ -13,5 +13,6 @@ Para executar este projeto realize o pull do branch, instale o .net 8 , modifiqu
 - SQL Server
 - Auto Mapper
 - Padrão Repository
+- Boostrap
 - Clean-Architecture
 
